@@ -25,7 +25,7 @@ SECRET_KEY = 'wfkrb@$3g3uh2nw4swc!^l465$=(5_%zp3l_hnf$dq7gfxf7g1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dkos.site']
 
 
 # Application definition
@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'dkos_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db_dkos_site',
+	'USER': 'dbadmin',
+	'PASSWORD': 'dbadmin',
+	'HOST': 'localhost',
+	'PORT': '',
     }
 }
 
