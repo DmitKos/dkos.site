@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('/webapps/dkos_site/site/production/secret_key.txt') as f:
+with open('/production/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -78,10 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db_dkos_site',
-	'USER': 'dbadmin',
-	'PASSWORD': 'dbadmin',
-	'HOST': 'localhost',
-	'PORT': '',
+	    'USER': 'dbadmin',
+	    'PASSWORD': 'dbadmin',
+	    'HOST': 'localhost',
+	    'PORT': '',
     }
 }
 

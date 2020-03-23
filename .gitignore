@@ -4,3 +4,4 @@ __pycache__/
 staticfiles/
 images/
 production/
+dkos_site/settings.py
