@@ -4,18 +4,18 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Topic(models.Model):
-    """Название темы"""
+    """РќР°Р·РІР°РЅРёРµ С‚РµРјС‹"""
     title = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey('Author', on_delete=models.PROTECT)
-    tag = models.ForeignKey('Tag', on_delete=models.PROTECT, blank=True)
+    author = models.ForeignKey('Author', on_delete=models.PROTECT, null=True)
+    tag = models.ForeignKey('Tag', on_delete=models.PROTECT, blank=True, null=True)
 
     def __str__(self):
         return self.title
 
 
 class Entry(models.Model):
-    """Текст темы"""
+    """РўРµРєСЃС‚ С‚РµРјС‹"""
     text = models.TextField()
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT)
 
@@ -27,7 +27,7 @@ class Entry(models.Model):
 
 
 class Author(models.Model):
-    """Автор темы"""
+    """РђРІС‚РѕСЂ С‚РµРјС‹"""
     username = models.CharField(max_length=20)
     first_name = models.CharField(max_length=50, blank=True)
     second_name = models.CharField(max_length=50, blank=True)
@@ -39,7 +39,7 @@ class Author(models.Model):
 
 
 class Tag(models.Model):
-    """Теги темы"""
+    """РўРµРіРё С‚РµРјС‹"""
     text = models.CharField(max_length=30)
 
     def __str__(self):
@@ -47,7 +47,7 @@ class Tag(models.Model):
 
 
 class Comment(models.Model):
-    """Комментарии относящиеся к теме"""
+    """РљРѕРјРјРµРЅС‚Р°СЂРёРё РѕС‚РЅРѕСЃСЏС‰РёРµСЃСЏ Рє С‚РµРјРµ"""
     text = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey('Author', on_delete=models.PROTECT)
