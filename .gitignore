@@ -1,7 +1,8 @@
 dkos_env/
 __pycache__/
 *.sqlite3
-staticfiles/
 images/
 production/
 static/
+dkos_site/settings.py
+mydatabase

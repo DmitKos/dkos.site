@@ -20,13 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('/webapps/dkos_site/site/production/secret_key.txt') as f:
+with open('C:/Users/kosterin/Documents/Scripts/dkos_site/production/secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['dkos.site']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,12 +77,8 @@ WSGI_APPLICATION = 'dkos_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_dkos_site',
-	    'USER': 'dbadmin',
-	    'PASSWORD': 'dbadmin',
-	    'HOST': 'localhost',
-	    'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -125,6 +121,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
