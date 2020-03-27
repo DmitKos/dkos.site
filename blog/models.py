@@ -9,6 +9,7 @@ class Topic(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey('Author', on_delete=models.PROTECT, null=True)
     tag = models.ForeignKey('Tag', on_delete=models.PROTECT, blank=True, null=True)
+    slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
         return self.title
@@ -18,6 +19,7 @@ class Entry(models.Model):
     """Текст темы"""
     text = models.TextField()
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT)
+    slug = models.SlugField(max_length=100, unique=True)
 
     class Meta:
         verbose_name_plural = 'entries'
@@ -33,6 +35,7 @@ class Author(models.Model):
     second_name = models.CharField(max_length=50, blank=True)
     age = models.IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(100)])
     email = models.EmailField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
         return '%s %s' % (self.username, self.email)
@@ -41,6 +44,7 @@ class Author(models.Model):
 class Tag(models.Model):
     """Теги темы"""
     text = models.CharField(max_length=30)
+    slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
         return self.text
@@ -52,6 +56,7 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey('Author', on_delete=models.PROTECT)
     comment_topic = models.ForeignKey('Topic', on_delete=models.PROTECT)
+    slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
         return self.text
