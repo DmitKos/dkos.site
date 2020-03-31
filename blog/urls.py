@@ -10,4 +10,8 @@ urlpatterns = [
     path('blog/', views.topics, name='topics'),
     # страница для каждого поста (Topic)
     path('topics/<str:slug>/', views.topic, name='topic'),
+    # страница со списком тегов (Tag)
+    path('tags/', views.tags, name='tags'),
+    # страницы для каждого тега (Tag)
+    path('tags/<str:slug>/', views.tag, name='tag'),
 ]

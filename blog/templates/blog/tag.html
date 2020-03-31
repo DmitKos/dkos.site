@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+
+{% block header %}
+	<h2>{{ tag }}</h2>
+{% endblock header %}
+
+{% block content %}
+
+{% for tag_topic in tag_topics %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3>
+				<a href="{% url 'blog:topic' tag_topic.slug %}">{{ tag_topic.title }}</a>
+			</h3>
+		</div>
+	</div> <!-- panel -->
+
+{% empty %}
+	<li>
+		There are no topic for this tag yet.
+	</li>
+{% endfor %}
+
+{% endblock content %}
