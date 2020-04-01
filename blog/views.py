@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
-from .models import Topic, Entry, Tag
+from .models import Topic, Entry, Tag, Comment
+from .forms import CommentForm
 
 # Create your views here.
 def index(request):
@@ -11,8 +14,8 @@ def index(request):
 def topics(request):
     """Выводим список тем (Topic)
     по убыванию, от новых к старым"""
-    topics = Topic.objects.order_by('-date')
-    entry = Entry.objects.all
+    topics = Topic.objects.all
+    entry = Entry.objects.order_by('-date')
     context = {'topics': topics, 'entry': entry}
     return render(request, 'blog/topics.html', context)
 
@@ -39,3 +42,38 @@ def tag(request, slug):
     tag_topics = tag.topic_set.order_by('title')
     context = {'tag': tag, 'tag_topics': tag_topics}
     return render(request, 'blog/tag.html', context)
+
+
+def comments(request):
+    """Представление для страницы со всеми комментариями"""
+    comments = Comment.objects.order_by('-date')
+    context = {'comments': comments}
+    return render(request, 'blog/comments.html', context)
+
+
+def comments_entry(request, slug):
+    """Комментарии принадлежащие определённой теме (Topic)"""
+    e_comment = get_object_or_404(Entry, slug__iexact=slug)
+    comments = e_comment.comment_set.order_by('-date')
+    e_text = e_comment.text
+    e_topic = e_comment.topic
+    context = {'comments': comments, 'e_text': e_text, 'e_topic': e_topic, 'e_comment': e_comment}
+    return render(request, 'blog/comments_entry.html', context)
+
+
+def new_comment(request, slug):
+    """Представление для страницы для добавления нового комментария"""
+    topic = get_object_or_404(Entry, slug__iexact=slug)
+    topic = entry.topic
+    if request.method != 'POST':
+        form = CommentForm()
+    else:
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.owner = request.user
+            new_comment.comment_topic_id = slug
+            new_comment.save()
+            return HttpResponseRedirect(reverse('blog:topic', args=[topic.slug]))
+    context = {'form': form, 'topic': topic, 'entry': entry}
+    return render(request, 'blog/new_comment.html', context)

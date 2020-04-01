@@ -14,4 +14,10 @@ urlpatterns = [
     path('tags/', views.tags, name='tags'),
     # страницы для каждого тега (Tag)
     path('tags/<str:slug>/', views.tag, name='tag'),
+    # страница с комментариями (Comment)
+    path('comments/', views.comments, name='comments'),
+    # страница для каждого по отдельности комментария
+    path('comments/<str:slug>/', views.comments_entry, name='comments_entry'),
+    # страница для добавления нового комментария
+    path('new_comment/<str:slug>/', views.new_comment, name='new_comment'),
 ]

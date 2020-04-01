@@ -11,7 +11,11 @@
     <p>{{ e.text }}</p>
     <p>{{ e.topic.author.username }}</p>
     <p>{{ e.topic.date }}</p>
-    <p><a href="{% url 'blog:tag' e.topic.tag.slug %}">{{ e.topic.tag.text }}</a></p>
+    {% if e.topic.tag.slug %}
+      <p><a href="{% url 'blog:tag' e.topic.tag.slug %}">{{ e.topic.tag.text }}</a></p>
+    {% else %}
+      <p>None</p>
+    {% endif %}
     {% empty %}
 		<p>Записей нет.</p>
     {% endfor %}

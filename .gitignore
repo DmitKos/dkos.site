@@ -5,4 +5,6 @@ production/
 static/admin/
 static/images/
 dkos_site/settings.py
+blog/migrations/
+resume/migrations/
 mydatabase

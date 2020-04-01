@@ -1,6 +1,14 @@
-from django.db import models
+﻿from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.text import slugify
+from time import time
+
+
+def slug_gen(s):
+    new_slug = slugify(s)
+    return new_slug + '_' + str(int(time()))
+
 
 # Create your models here.
 class Topic(models.Model):
@@ -18,6 +26,7 @@ class Topic(models.Model):
 class Entry(models.Model):
     """Текст темы"""
     text = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT)
     slug = models.SlugField(max_length=100, unique=True)
 
@@ -54,9 +63,17 @@ class Comment(models.Model):
     """Комментарии относящиеся к теме"""
     text = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey('Author', on_delete=models.PROTECT)
-    comment_topic = models.ForeignKey('Topic', on_delete=models.PROTECT)
-    slug = models.SlugField(max_length=100, unique=True)
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    comment_entry = models.ForeignKey('Entry', on_delete=models.PROTECT)
+    slug = models.SlugField(max_length=100, allow_unicode=True, unique=True)
+
+    # def save(self, *args, **kwargs):
+    #     self.slug = slugify(self.date)
+    #     super(Comment, self).save(*args, **kwargs)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slug_gen(self.author)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.text

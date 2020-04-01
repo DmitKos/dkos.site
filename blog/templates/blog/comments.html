@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block header %}
+<h2>Все комментарии:</h2>
+{% endblock header %}
+
+{% block content %}
+{% for comment in comments %}
+<p>{{ comment }}</p>
+{% empty %}
+<p>Ещё нет комментариев.</p>
+{% endfor %}
+{% endblock content %}

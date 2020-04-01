@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% block header %}
+<h2><a href="{% url 'blog:topic' e_topic.slug %}">{{ e_topic }}</a></h2>
+{% endblock header %}
+
+{% block content %}
+<p>
+    {{ e_text }}
+</p>
+<h3>Comments:</h3>
+<p>
+{% for comment in comments %}
+<p>{{ comment.owner }}: {{ comment }}</p>
+<p>{{ comment.date_added }}</p>
+<br>
+{% empty %}
+<p>There are no comments for this entry yet.</p>
+{% endfor %}
+<p><a href="{% url 'blog:new_comment' e_comment.slug %}">add new comment</a></p>
+{% endblock content %}
+</p>
