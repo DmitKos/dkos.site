@@ -35,6 +35,17 @@
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		  </form>
 		</div>
+		<div>
+			<ul class="nav justify-content-end">
+				{% if user.is_authenticated %}
+					<li class="nav-item"><a class="nav-link active">Hello, {{ user.username }}.</a></li>
+					<li class="nav-item"><a href="{% url 'users:logout' %}" class="nav-link active">log out</a></li>
+				{% else %}
+					<li class="nav-item"><a href="{% url 'users:register' %}" class="nav-link active">register</a></li>
+					<li class="nav-item"><a href="{% url 'users:login' %}" class="nav-link active">log in</a></li>
+				{% endif %}
+			</ul>
+		</div>
 	</nav>
 	<br>
 		<div class="container">
