@@ -63,7 +63,7 @@ def comments_entry(request, slug):
 
 def new_comment(request, slug):
     """Представление для страницы для добавления нового комментария"""
-    topic = get_object_or_404(Entry, slug__iexact=slug)
+    entry = get_object_or_404(Entry, slug__iexact=slug)
     topic = entry.topic
     if request.method != 'POST':
         form = CommentForm()

@@ -9,7 +9,7 @@
 
 <h3>{{ entry }}</h3>
 <h2>Add a new comment:</h2>
-    <form action="{% url 'blog:new_comment' topic.slug %}" method='post' class="form">
+    <form action="{% url 'blog:new_comment' entry.slug %}" method='post' class="form">
 		{% csrf_token %}
 		{% bootstrap_form form %}
 		{% buttons %}

@@ -15,7 +15,7 @@
 <p>None</p>
 {% endif %}
 <p>
-	<a href="{% url 'blog:comments_entry' entry.slug %}" class="btn btn-primary">comments({{ entry.comment_set.count }})</a> | <a href="{% url 'blog:new_comment' entry.slug %}" class="btn btn-primary">add new comment</a>
+	<a href="{% url 'blog:comments_entry' e.slug %}" class="btn btn-primary">comments({{ e.comment_set.count }})</a> | <a href="{% url 'blog:new_comment' e.slug %}" class="btn btn-primary">add new comment</a>
 </p>
 {% endfor %}
 {% endblock content %}
