@@ -5,6 +5,10 @@ from django.utils.text import slugify
 from time import time
 
 
+# генерируем slug: первая часть slug из модели, плюс символ "_" и
+# плюс вторая часть из модуля time, который отсчитывает время 
+# с 01 января 1970 года, затем приводим вторую часть в строковое
+# значение
 def slug_gen(s):
     new_slug = slugify(s)
     return new_slug + '_' + str(int(time()))
@@ -65,15 +69,13 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     comment_entry = models.ForeignKey('Entry', on_delete=models.PROTECT)
-    slug = models.SlugField(max_length=100, allow_unicode=True, unique=True)
+    slug = models.SlugField(max_length=100, allow_unicode=True, unique=True, blank=True)
 
-    # def save(self, *args, **kwargs):
-    #     self.slug = slugify(self.date)
-    #     super(Comment, self).save(*args, **kwargs)
-    
     def save(self, *args, **kwargs):
-        self.slug = slug_gen(self.author)
+        if not self.id:
+            self.slug = slug_gen(self.author)
         super().save(*args, **kwargs)
+
 
     def __str__(self):
         return self.text

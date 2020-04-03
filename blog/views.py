@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Topic, Entry, Tag, Comment
 from .forms import CommentForm
@@ -71,8 +72,9 @@ def new_comment(request, slug):
         form = CommentForm(request.POST)
         if form.is_valid():
             new_comment = form.save(commit=False)
-            new_comment.owner = request.user
-            new_comment.comment_topic_id = slug
+            new_comment.author = request.user
+            new_comment.comment_entry_id = entry.id
+            new_comment.slug = slug
             new_comment.save()
             return HttpResponseRedirect(reverse('blog:topic', args=[topic.slug]))
     context = {'form': form, 'topic': topic, 'entry': entry}
