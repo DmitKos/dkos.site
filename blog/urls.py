@@ -5,9 +5,11 @@ from . import views
 app_name = 'blog'
 urlpatterns = [
     # домашняя страница
+    #path('', views.index, name='index'),
+    # домашняя страница
     path('', views.index, name='index'),
     # страница блога со списком постов (Topic)
-    path('blog/', views.topics, name='topics'),
+    path('topics/', views.topics, name='topics'),
     # страница для каждого поста (Topic)
     path('topics/<str:slug>/', views.topic, name='topic'),
     # страница со списком тегов (Tag)

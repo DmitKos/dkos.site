@@ -7,17 +7,24 @@ from .models import Topic, Entry, Tag, Comment
 from .forms import CommentForm
 
 # Create your views here.
+# def index(request):
+#     """Домашняя страница приложения blog"""
+#     return render(request, 'blog/index.html')
+
+
 def index(request):
-    """Домашняя страница приложения blog"""
-    return render(request, 'blog/index.html')
-
-
-def topics(request):
     """Выводим список тем (Topic)
     по убыванию, от новых к старым"""
     topics = Topic.objects.all
     entry = Entry.objects.order_by('-date')
     context = {'topics': topics, 'entry': entry}
+    return render(request, 'blog/index.html', context)
+
+
+def topics(request):
+    """Выводим список тем (Topic)"""
+    topics = Topic.objects.order_by('title')
+    context = {'topics': topics}
     return render(request, 'blog/topics.html', context)
 
 
@@ -53,7 +60,7 @@ def comments(request):
 
 
 def comments_entry(request, slug):
-    """Комментарии принадлежащие определённой теме (Topic)"""
+    """Комментарии принадлежащие определённой записи (Entry)"""
     e_comment = get_object_or_404(Entry, slug__iexact=slug)
     comments = e_comment.comment_set.order_by('-date')
     e_text = e_comment.text

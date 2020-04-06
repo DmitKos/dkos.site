@@ -6,18 +6,12 @@
 
 {% block content %}
 <div class="list-group">
-    {% for e in entry %}
-    <p><a href="{% url 'blog:topic' e.topic.slug %}" class="list-group-item list-group-item-action list-group-item-light">{{ e.topic }}</a></p>
-    <p>{{ e.text }}</p>
-    <p>{{ e.topic.author.username }}</p>
-    <p>{{ e.topic.date }}</p>
-    {% if e.topic.tag.slug %}
-      <p><a href="{% url 'blog:tag' e.topic.tag.slug %}">{{ e.topic.tag.text }}</a></p>
-    {% else %}
-      <p>None</p>
-    {% endif %}
+    {% for topic in topics %}
+      <p>
+        <a href="{% url 'blog:topic' topic.slug %}">{{ topic.title }}</a>
+      </p>
     {% empty %}
-		<p>Записей нет.</p>
+		  <p>Записей нет.</p>
     {% endfor %}
 </div>
 {% endblock content %}

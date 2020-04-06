@@ -1,16 +1,26 @@
 {% extends "blog/base.html" %}
 
 {% block header %}
-	<div class='jumbotron'>
-		<h1 class="display-4">Привет</h1>
-	</div>
+	<h1 class="display-4">Список тем:</h1>
 {% endblock header %}
 
 {% block content %}
-<hr class="my-4">
-<div class="lead">
-    <p>Привет! Меня зовут Дмитрий и этой мой личный сайт. Я работаю системным администратором, 
-    программирование - это моё хобби. На этом сайте я пишу об интересных событиях в моей жизни, 
-    публикую разные скрипты и программы.</p>
+<div class="list-group">
+    {% for e in entry %}
+    <p><a href="{% url 'blog:topic' e.topic.slug %}" class="list-group-item list-group-item-action list-group-item-light">{{ e.topic }}</a></p>
+    <p>{{ e.text }}</p>
+    <p>{{ e.topic.author.username }}</p>
+    <p>{{ e.topic.date }}</p>
+    {% if e.topic.tag.slug %}
+      <p><a href="{% url 'blog:tag' e.topic.tag.slug %}">{{ e.topic.tag.text }}</a></p>
+    {% else %}
+      <p>None</p>
+    {% endif %}
+    <p>
+      <a href="{% url 'blog:comments_entry' e.slug %}" class="btn btn-primary">comments({{ e.comment_set.count }})</a> | <a href="{% url 'blog:new_comment' e.slug %}" class="btn btn-primary">add new comment</a> | <a href="{% url 'blog:topic' e.topic.slug %}" class="btn btn-primary">читать</a>
+    </p>
+    {% empty %}
+		<p>Записей нет.</p>
+    {% endfor %}
 </div>
 {% endblock content %}

@@ -4,5 +4,6 @@ from . import views
 
 app_name = 'resume'
 urlpatterns = [
-    
+    # домашняя страница
+    path('resume/', views.resume, name='resume'),
 ]

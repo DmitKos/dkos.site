@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+
+{% block header %}
+	<div class='jumbotron'>
+		<h1 class="display-4">Моё резюме</h1>
+	</div>
+{% endblock header %}
+
+{% block content %}
+<hr class="my-4">
+<div class="lead">
+    {% for resume in resumes %}
+    <p>{{ resume.title }}</p>
+    <p>{{ resume.text }}</p>
+    {% endfor %}
+</div>
+{% endblock content %}
