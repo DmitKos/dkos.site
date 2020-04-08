@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Topic, Entry, Tag, Comment
 from .forms import CommentForm
 
+from django.db.models import Q
+
 # Create your views here.
 # def index(request):
 #     """Домашняя страница приложения blog"""
@@ -86,3 +88,14 @@ def new_comment(request, slug):
             return HttpResponseRedirect(reverse('blog:topic', args=[topic.slug]))
     context = {'form': form, 'topic': topic, 'entry': entry}
     return render(request, 'blog/new_comment.html', context)
+
+
+def site_search(request):
+    topics = Topic.objects.order_by('-date')
+    entries = Entry.objects.order_by('-date')
+    search_query = request.GET.get('search', '')
+    if search_query:
+        topics = Topic.objects.filter(Q(title__icontains=search_query))
+        entries = Entry.objects.filter(Q(text__icontains=search_query))
+    context = {'topics': topics, 'entries': entries}
+    return render(request, 'blog/search.html', context)

@@ -22,4 +22,6 @@ urlpatterns = [
     path('comments/<str:slug>/', views.comments_entry, name='comments_entry'),
     # страница для добавления нового комментария
     path('new_comment/<str:slug>/', views.new_comment, name='new_comment'),
+    # поиск на сайте
+    path('search/', views.site_search, name='site_search'),
 ]

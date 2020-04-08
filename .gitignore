@@ -8,3 +8,5 @@ dkos_site/settings.py
 blog/migrations/
 resume/migrations/
 mydatabase
+
+!static/css/
