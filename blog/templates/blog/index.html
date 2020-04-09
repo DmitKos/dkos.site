@@ -1,28 +1,42 @@
 {% extends "blog/base.html" %}
 
 {% block header %}
-	<h1 class="display-1">Список тем:</h1>
+<p class="display-1">Список тем:</p>
 {% endblock header %}
 
 {% block content %}
-<div class="list-group">
-    {% for e in entry %}
-    <p><h2 class="display-2">
-        <a href="{% url 'blog:topic' e.topic.slug %}" class="list-group-item list-group-item-action list-group-item-light">{{ e.topic }}</a>
-    </h2></p>
-    <p>{{ e.text }}</p>
-    <p>{{ e.topic.author.username }}</p>
-    <p>{{ e.topic.date }}</p>
-    {% if e.topic.tag.slug %}
-      <p><a href="{% url 'blog:tag' e.topic.tag.slug %}">{{ e.topic.tag.text }}</a></p>
-    {% else %}
-      <p>None</p>
-    {% endif %}
-    <p>
-      <a href="{% url 'blog:comments_entry' e.slug %}" class="btn btn-primary">comments({{ e.comment_set.count }})</a> | <a href="{% url 'blog:new_comment' e.slug %}" class="btn btn-primary">add new comment</a> | <a href="{% url 'blog:topic' e.topic.slug %}" class="btn btn-primary">читать</a>
-    </p>
-    {% empty %}
-		<p>Записей нет.</p>
-    {% endfor %}
+
+{% for e in entry %}
+<div class="card bg-light mb-3">
+    <div class="card-header">
+        <h1 class="display-2">
+            <a href="{% url 'blog:topic' e.topic.slug %}">{{ e.topic }}</a>
+        </h1>
+        <div class="card-date">
+            <small class="card-text text-muted">{{ e.topic.date }}</small>
+        </div>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ e.text }}</p>
+        <p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
+    </div>
+    <div class="card-footer card-footer-text bg-transparent border-secondary">
+        <a href="{% url 'blog:comments_entry' e.slug %}"
+            class="btn btn-outline-primary btn-small">комментарии({{ e.comment_set.count }})</a> | <a
+            href="{% url 'blog:new_comment' e.slug %}" class="btn btn-outline-primary btn-small">добавить
+            комментарий</a> | <a href="{% url 'blog:topic' e.topic.slug %}" class="btn btn-primary btn-small">читать</a>
+        <div class="card-tag">
+            {% if e.topic.tag.slug %}
+            <a href="{% url 'blog:tag' e.topic.tag.slug %}"
+                class="badge badge-pill badge-success">{{ e.topic.tag.text }}</a>
+            {% else %}
+            <span class="badge badge-pill badge-light">None</span>
+            {% endif %}
+        </div>
+    </div>
 </div>
+{% empty %}
+<p class="display-2">Записей нет.</p>
+{% endfor %}
+
 {% endblock content %}
