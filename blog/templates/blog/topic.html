@@ -1,23 +1,38 @@
 {% extends "blog/base.html" %}
 
 {% block header %}
-	<h2>{{ topic }}</h2>
 {% endblock header %}
-
 {% block content %}
+<div class="card bg-light mb-3">
+	<div class="card-header">
+		<h1 class="display-2">{{ topic }}</h1>
 
-{% for e in entry %}
-<p>{{ e.text }}</p>
-<p>{{ e.topic.author.username }}</p>
-<p>{{ e.topic.date }}</p>
-	{% if e.topic.tag.slug %}
-		<p><a href="{% url 'blog:tag' e.topic.tag.slug %}">{{ e.topic.tag.text }}</a></p>
-	{% else %}
-		<p>None</p>
-	{% endif %}
-<p>
-	<a href="{% url 'blog:comments_entry' e.slug %}" class="btn btn-primary">comments({{ e.comment_set.count }})</a> | <a href="{% url 'blog:new_comment' e.slug %}" class="btn btn-primary">add new comment</a>
-</p>
+		{% for e in entry %}
+		<div class="card-date">
+			<small class="card-text text-muted">{{ e.topic.date }}</small>
+		</div>
+	</div>
+	<div class="card-body">
+		<p class="card-text">{{ e.text }}</p>
+		<p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
+	</div>
+	<div class="card-footer card-footer-text bg-transparent border-secondary">
+		<a href="{% url 'blog:comments_entry' e.slug %}"
+			class="btn btn-outline-primary btn-small">комментарии({{ e.comment_set.count }})</a> | <a
+			href="{% url 'blog:new_comment' e.slug %}" class="btn btn-outline-primary btn-small">добавить
+			комментарий</a>
+		<div class="card-tag">
+			{% if e.topic.tag.slug %}
+			<a href="{% url 'blog:tag' e.topic.tag.slug %}"
+					class="badge badge-pill badge-success">{{ e.topic.tag.text }}</a>
+			{% else %}
+			<span class="badge badge-pill badge-light">None</span>
+			{% endif %}
+		</div>
+
+	</div>
+</div>
+
 {% endfor %}
 
 {% endblock content %}

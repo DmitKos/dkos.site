@@ -1,22 +1,31 @@
 {% extends "blog/base.html" %}
 
 {% block header %}
-<h2><a href="{% url 'blog:topic' e_topic.slug %}">{{ e_topic }}</a></h2>
 {% endblock header %}
 
 {% block content %}
-<p>
-    {{ e_text }}
-</p>
-<h3>Comments:</h3>
-<p>
-{% for comment in comments %}
-<p>{{ comment.author }}: {{ comment }}</p>
-<p>{{ comment.date }}</p>
-<br>
-{% empty %}
-<p>There are no comments for this entry yet.</p>
-{% endfor %}
-<p><a href="{% url 'blog:new_comment' e_comment.slug %}">add new comment</a></p>
-{% endblock content %}
-</p>
+<div class="card bg-light mb-3">
+    <div class="card-header">
+        <h1 class="display-2"><a href="{% url 'blog:topic' e_topic.slug %}">{{ e_topic }}</a></h1>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ e_text }}
+        </p>
+    </div>
+    <div class="card-footer card-footer-text bg-transparent border-secondary">
+        <h2 class="display-4">Comments:</h2>
+    </div>
+        {% for comment in comments %}
+        <p class="card-subtitle mb-2 text-muted">{{ comment.author }} :</p><p>{{ comment }}</p>
+        <p>{{ comment.date }}</p>
+        <br>
+        {% empty %}
+        <p>There are no comments for this entry yet.</p>
+        {% endfor %}
+        <div>
+            <a href="{% url 'blog:new_comment' e_comment.slug %}" class="btn btn-outline-primary btn-small">add new
+                comment</a>
+        </div>
+        {% endblock content %}
+    
+</div>
