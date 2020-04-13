@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="body">
+<body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="{% url 'blog:index' %}">Главная</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -64,6 +64,8 @@
 	</div> <!-- /container -->
 	<div class="card-footer card-footer-fixed">
 		{% block footer %}
+		<div class="card-footer-fixed-text">
+		</div>
 		<div class="card-footer-fixed-text">
 			<small class="text-muted">Этот сайт построен с помощью веб-фреймворка Django 3.0.4
 				 и css-фреймворка Bootstrap 4, если вам приглянулся этот сайт, то вы можете
