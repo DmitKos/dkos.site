@@ -41,7 +41,7 @@
 
 .card-footer-fixed {
     position: absolute;
-    bottom: 0px;
+    /* bottom: 0px; */
     left: 0px;
     right: 0px;
     display: flex;
@@ -61,4 +61,13 @@
     font-size: 0.7rem;
     flex: 1 1 auto;
     max-width: 50%;
+}
+
+.text-comment {
+    font-size: 0.8rem;
+    margin-left: 1.5rem;
+}
+
+.author-comment {
+    margin-left: 0.5rem;
 }

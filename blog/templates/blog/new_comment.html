@@ -2,19 +2,19 @@
 {% load bootstrap4 %}
 
 {% block header %}
-<h2><a href="{% url 'blog:topic' topic.slug %}">{{ topic }}</a></h2>
+<h1 class="display-2"><a href="{% url 'blog:topic' topic.slug %}">{{ topic }}</a></h1>
 {% endblock header %}
 
 {% block content %}
 
-<h3>{{ entry }}</h3>
-<h2>Add a new comment:</h2>
-    <form action="{% url 'blog:new_comment' entry.slug %}" method='post' class="form">
+<p class="card-text">{{ entry }}</p>
+    <label>Добавление комментария:</label>
+    <form action="{% url 'blog:new_comment' entry.slug %}" method='post'>
+		<div class="form-group">
 		{% csrf_token %}
 		{% bootstrap_form form %}
 		{% buttons %}
-			<button name="submit" class="btn btn-primary">add comment</button>
-		{% endbuttons %}
+		<button name="submit" class="btn btn-primary btn-small">add comment</button>
+		{% endbuttons %}</div>
 	</form>
-
 {% endblock content %}
