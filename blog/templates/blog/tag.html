@@ -1,19 +1,18 @@
 {% extends "blog/base.html" %}
 
 {% block header %}
-	<h2>{{ tag }}</h2>
+<p class="display-1">Список тем с тегом: {{ tag }}</p>
 {% endblock header %}
 
 {% block content %}
 
 {% for tag_topic in tag_topics %}
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3>
-				<a href="{% url 'blog:topic' tag_topic.slug %}">{{ tag_topic.title }}</a>
-			</h3>
-		</div>
-	</div> <!-- panel -->
+<div class="card bg-light mb-3">
+<div class="card-header display-2">
+	<a href="{% url 'blog:topic' tag_topic.slug %}">{{ tag_topic.title }}</a>
+</div>
+</div>
+
 
 {% empty %}
 	<li>

@@ -1,4 +1,4 @@
-{% extends "blog/base.html" %} 
+{% extends "blog/base.html" %}
 {% load bootstrap4 %}
 
 {% block header %}
@@ -8,13 +8,14 @@
 {% block content %}
 
 <p class="card-text">{{ entry }}</p>
-    <label>Добавление комментария:</label>
-    <form action="{% url 'blog:new_comment' entry.slug %}" method='post'>
-		<div class="form-group">
+<label class="font-italic text-add-comment">Добавление комментария:</label>
+<form action="{% url 'blog:new_comment' entry.slug %}" method='post'>
+	<div class="form-group">
 		{% csrf_token %}
 		{% bootstrap_form form %}
 		{% buttons %}
-		<button name="submit" class="btn btn-primary btn-small">add comment</button>
-		{% endbuttons %}</div>
-	</form>
+		<button name="submit" class="btn btn-primary btn-small">добавить комментарий</button>
+		{% endbuttons %}
+	</div>
+</form>
 {% endblock content %}

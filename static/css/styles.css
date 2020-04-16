@@ -71,3 +71,15 @@
 .author-comment {
     margin-left: 0.5rem;
 }
+
+.text-add-comment {
+    font-size: 0.8rem;
+}
+
+.login-text {
+    font-size: 0.9rem;
+}
+
+.success {
+    color: #28a745;
+}

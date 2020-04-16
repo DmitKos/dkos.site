@@ -1,19 +1,21 @@
-{% extends "blog/base.html" %} 
+{% extends "blog/base.html" %}
 {% load bootstrap4 %}
 
 {% block header %}
-	<h2>Log in to your account.</h2>
+<p class="display-2">Войти в свой аккаунт.</p>
 {% endblock header %}
 
 {% block content %}
 
-	<form method="post" action="{% url 'users:login' %}" class="form">
+<p>
+	<form method="post" action="{% url 'users:login' %}" class="form login-text">
 		{% csrf_token %}
 		{% bootstrap_form form %}
-			{% buttons %}
-				<button name="submit" class="btn btn-primary">log in</button>
-			{% endbuttons %}
+		{% buttons %}
+		<button name="submit" class="btn btn-primary btn-small">войти</button>
+		{% endbuttons %}
 		<input type="hidden" name="next" value="{% url 'blog:index' %}" />
 	</form>
-	
+</p>
+
 {% endblock content %}

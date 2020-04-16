@@ -1,20 +1,19 @@
 {% extends "blog/base.html" %}
 
 {% block header %}
-	<h1 class="display-4">Теги</h1>
+<p class="display-1">Список тегов:</p>
 {% endblock header %}
 
 {% block content %}
 
 <div class="list-group">
 	{% for tag in tags %}
-		<h3>
-			<a href="{% url 'blog:tag' tag.slug %}" class="list-group-item list-group-item-action list-group-item-light">{{ tag }}</a>
-		</h3>
-    {% empty %}
-	    <p>
-            Тегов ещё нет.
-        </p>
+	<p><a href="{% url 'blog:tag' tag.slug %}"
+	class="list-group-item list-group-item-action btn-outline-success">{{ tag }}</a></p>
+	{% empty %}
+	<p class="btn-outline-light">
+		Тегов ещё нет.
+	</p>
 	{% endfor %}
 </div>
 {% endblock content %}

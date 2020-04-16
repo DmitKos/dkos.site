@@ -85,7 +85,7 @@ def new_comment(request, slug):
             new_comment.comment_entry_id = entry.id
             new_comment.slug = slug
             new_comment.save()
-            return HttpResponseRedirect(reverse('blog:topic', args=[topic.slug]))
+            return HttpResponseRedirect(reverse('blog:comments_entry', args=[entry.slug]))
     context = {'form': form, 'topic': topic, 'entry': entry}
     return render(request, 'blog/new_comment.html', context)
 

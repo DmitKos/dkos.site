@@ -2,18 +2,20 @@
 {% load bootstrap4 %}
 
 {% block header %}
-	<h2>Register your account.</h2>
+<p class="display-2">Зарегистрировать свой аккаунт.</p>
 {% endblock header %}
 
 {% block content %}
 
-	<form method="post" action="{% url 'users:register' %}" class="form">
+<p>
+	<form method="post" action="{% url 'users:register' %}" class="form login-text">
 		{% csrf_token %}
 		{% bootstrap_form form %}
-		{% buttons %} 
-			<button name="submit" class="btn btn-primary">register</button>
+		{% buttons %}
+		<button name="submit" class="btn btn-primary btn-small">зарегистрировать</button>
 		{% endbuttons %}
 		<input type="hidden" name="next" value="{% url 'blog:index' %}" />
 	</form>
+</p>
 
 {% endblock content %}
