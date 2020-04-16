@@ -8,6 +8,7 @@
 {% block content %}
 
 <p class="card-text">{{ entry }}</p>
+{% if user.is_authenticated %}
 <label class="font-italic text-add-comment">Добавление комментария:</label>
 <form action="{% url 'blog:new_comment' entry.slug %}" method='post'>
 	<div class="form-group">
@@ -18,4 +19,7 @@
 		{% endbuttons %}
 	</div>
 </form>
+{% else %}
+<p class="form login-text">Чтобы добавить комментарий необходимо <a href="{% url 'users:login' %}">войти</a> или <a href="{% url 'users:register' %}">зарегистрироваться</a>.</p>
+{% endif %}
 {% endblock content %}

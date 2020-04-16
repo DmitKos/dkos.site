@@ -11,7 +11,7 @@
 	<p><a href="{% url 'blog:tag' tag.slug %}"
 	class="list-group-item list-group-item-action btn-outline-success">{{ tag }}</a></p>
 	{% empty %}
-	<p class="btn-outline-light">
+	<p class="alert alert-danger" role="alert">
 		Тегов ещё нет.
 	</p>
 	{% endfor %}

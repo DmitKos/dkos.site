@@ -1,24 +1,26 @@
 {% extends "blog/base.html" %}
 
 {% block header %}
-	<h1 class="display-4">Search result:</h1>
+<p class="display-1">Результаты поиска:</p>
 {% endblock header %}
 
 {% block content %}
 <div class="list-group">
     {% if topics or entries %}
-	{% for topic in topics %}
-		<h3>
-			<a href="{% url 'blog:topic' topic.slug %}" class="list-group-item list-group-item-action list-group-item-light">{{ topic }}</a>
-        </h3>
+    {% for topic in topics %}
+    <p>
+        <a href="{% url 'blog:topic' topic.slug %}" class="list-group-item list-group-item-action">{{ topic }}</a>
+    </p>
     {% endfor %}
     {% for entry in entries %}
-    <h3>
-        <a href="{% url 'blog:topic' entry.topic.slug %}" class="list-group-item list-group-item-action list-group-item-light">{{ entry }}</a>
-    </h3>
+    <p>
+        <a href="{% url 'blog:topic' entry.topic.slug %}" class="list-group-item list-group-item-action">{{ entry }}</a>
+    </p>
     {% endfor %}
     {% else %}
-    None
+    <p class="alert alert-danger" role="alert">
+        Ничего не найдено, попробуйте снова.
+    </p>
     {% endif %}
 </div>
 {% endblock content %}

@@ -16,6 +16,7 @@
 		{% endbuttons %}
 		<input type="hidden" name="next" value="{% url 'blog:index' %}" />
 	</form>
+	<p class="form login-text">Ещё нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться.</a></p>
 </p>
 
 {% endblock content %}
