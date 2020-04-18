@@ -23,7 +23,7 @@
             {{ comment }}
         </p>
         {% empty %}
-        <p class="text-comment">There are no comments for this entry yet.</p>
+        <p class="text-comment">Для этой записи ещё нет комментариев.</p>
         {% endfor %}
         </p>
         <p><a href="{% url 'blog:new_comment' e_comment.slug %}" class="btn btn-outline-primary btn-small">добавить комментарий</a></p>

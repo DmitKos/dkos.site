@@ -12,7 +12,7 @@
 		{% csrf_token %}
 		{% bootstrap_form form %}
 		{% buttons %}
-		<button name="submit" class="btn btn-primary btn-small">зарегистрировать</button>
+		<button name="submit" class="btn btn-primary btn-small">зарегистрироваться</button>
 		{% endbuttons %}
 		<input type="hidden" name="next" value="{% url 'blog:index' %}" />
 	</form>
