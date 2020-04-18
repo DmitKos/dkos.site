@@ -22,6 +22,26 @@
 	<title>Blog</title>
 	<meta name="yandex-verification" content="1ac7cbba58310946" />
 	<meta name="google-site-verification" content="ceWocycE8jQSymieGgBt2gjt8HnciJaQJN7jmfUoV-o" />
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function (m, e, t, r, i, k, a) {
+			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+			m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+		})
+			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+		ym(62061763, "init", {
+			clickmap: true,
+			trackLinks: true,
+			accurateTrackBounce: true
+		});
+	</script>
+	<noscript>
+		<div><img src="https://mc.yandex.ru/watch/62061763" style="position:absolute; left:-9999px;" alt="" /></div>
+	</noscript>
+	<!-- /Yandex.Metrika counter -->
+
+	<title>Blog</title>
 </head>
 
 <body>
@@ -69,10 +89,12 @@
 		</div>
 		<div class="card-footer-fixed-text">
 			<small class="text-muted">Этот сайт построен с помощью веб-фреймворка Django 3.0.4
-				 и css-фреймворка Bootstrap 4, если вам приглянулся этот сайт, то вы можете
-				  скачать его исходный код из моего репозитория <a href="https://github.com/DmitKos/" class="badge badge-primary">GitHub</a>,
-				   а ещё можете посмотреть моё <a href="{% url 'resume:resume' %}" class="badge badge-primary">Resume</a>. Чуть не забыл - &copy; 
-				   2020 бла бла и т.п.
+				и css-фреймворка Bootstrap 4, если вам приглянулся этот сайт, то вы можете
+				скачать его исходный код из моего репозитория <a href="https://github.com/DmitKos/"
+					class="badge badge-primary">GitHub</a>,
+				а ещё можете посмотреть моё <a href="{% url 'resume:resume' %}" class="badge badge-primary">Resume</a>.
+				Чуть не забыл - &copy;
+				2020 бла бла и т.п.
 			</small>
 		</div>
 		{% endblock footer %}
