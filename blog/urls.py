@@ -2,6 +2,14 @@
 from django.urls import path, include
 from . import views
 
+from django.contrib.sitemaps.views import sitemap
+from blog.sitemaps import TopicSitemap, TagSitemap
+
+sitemaps = {
+    'topics': TopicSitemap,
+    'tag': TagSitemap,
+}
+
 app_name = 'blog'
 urlpatterns = [
     # домашняя страница
@@ -24,4 +32,5 @@ urlpatterns = [
     path('new_comment/<str:slug>/', views.new_comment, name='new_comment'),
     # поиск на сайте
     path('search/', views.site_search, name='site_search'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
