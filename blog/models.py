@@ -86,3 +86,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class Image(models.Model):
+    """Изображения для Topic"""
+    text = models.TextField(max_length=70)
+    image = models.ImageField(upload_to='images/', blank=True)
+    topic = models.ForeignKey('Topic', on_delete=models.PROTECT, blank=True, null=True)

@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import Topic, Entry, Tag, Comment
+from .models import Topic, Entry, Tag, Comment, Image
 from .forms import CommentForm
 
 from django.db.models import Q
@@ -19,7 +19,8 @@ def index(request):
     по убыванию, от новых к старым"""
     topics = Topic.objects.all
     entry = Entry.objects.order_by('-date')
-    context = {'topics': topics, 'entry': entry}
+    image = Image.objects.all
+    context = {'topics': topics, 'entry': entry, 'image': image}
     return render(request, 'blog/index.html', context)
 
 
@@ -34,7 +35,8 @@ def topic(request, slug):
     """Вьюшка для каждой отдельной страницы (Topic)"""
     topic = get_object_or_404(Topic, slug__iexact=slug)
     entry = topic.entry_set.all
-    context = {'topic': topic, 'entry': entry}
+    image = topic.image_set.all
+    context = {'topic': topic, 'entry': entry, 'image': image}
     return render(request, 'blog/topic.html', context)
 
 

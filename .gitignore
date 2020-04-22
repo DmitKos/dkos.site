@@ -3,7 +3,7 @@ __pycache__/
 *.sqlite3
 production/
 static/admin/
-static/images/
+media/images/
 dkos_site/settings.py
 blog/migrations/
 resume/migrations/

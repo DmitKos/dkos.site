@@ -6,7 +6,6 @@
 <div class="card bg-light mb-3">
 	<div class="card-header">
 		<h1 class="display-2">{{ topic }}</h1>
-
 		{% for e in entry %}
 		<div class="card-date">
 			<small class="card-text text-muted">{{ e.topic.date }}</small>
@@ -14,6 +13,16 @@
 	</div>
 	<div class="card-body">
 		<p class="card-text">{{ e.text }}</p>
+		<div class="topic-image">
+			{% for i in image %}
+			<p>
+				<img src="{{ i.image.url }}" class="img-auto" alt="">
+				<p>
+					{{ i.text }}
+				</p>
+			</p>
+			{% endfor %}
+		</div>
 		<p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
 	</div>
 	<div class="card-footer card-footer-text bg-transparent border-secondary">
@@ -24,7 +33,7 @@
 		<div class="card-tag">
 			{% if e.topic.tag.slug %}
 			<a href="{% url 'blog:tag' e.topic.tag.slug %}"
-					class="badge badge-pill badge-success">{{ e.topic.tag.text }}</a>
+				class="badge badge-pill badge-success">{{ e.topic.tag.text }}</a>
 			{% else %}
 			<span class="badge badge-pill badge-light">None</span>
 			{% endif %}
