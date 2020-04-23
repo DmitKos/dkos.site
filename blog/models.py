@@ -37,6 +37,7 @@ class Entry(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT)
     slug = models.SlugField(max_length=100, unique=True)
+    image = models.ImageField(upload_to='images/preview/', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'entries'

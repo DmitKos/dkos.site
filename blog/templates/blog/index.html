@@ -16,9 +16,14 @@
             <small class="card-text text-muted">{{ e.topic.date }}</small>
         </div>
     </div>
-    <div class="card-body">
-        <p class="card-text">{{ e.text }}</p>
-        <p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
+    <div class="card-body card-body-img">
+        <div>
+            <p class="card-text">{{ e.text }}</p>
+            <p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
+        </div>
+        <div>
+            <img class="card-img-top" src="{{ e.image.url }}" alt="">
+        </div>
     </div>
     <div class="card-footer card-footer-text bg-transparent border-secondary">
         <a href="{% url 'blog:comments_entry' e.slug %}"

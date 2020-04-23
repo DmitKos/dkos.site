@@ -15,11 +15,9 @@
 		<p class="card-text">{{ e.text }}</p>
 		<div>
 			{% for i in image %}
-			<p>
-				<img src="{{ i.image.url }}" alt="">
-				<p>
-					{{ i.text }}
-				</p>
+			<img src="{{ i.image.url }}" alt="">
+			<p class="card-text">
+				{{ i.text }}
 			</p>
 			{% endfor %}
 		</div>
