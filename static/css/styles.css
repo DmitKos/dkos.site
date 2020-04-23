@@ -39,12 +39,15 @@
     display: inline-flex;
 }
 
-.card-footer-fixed {
+/* .card-footer-fixed {
     position: absolute;
     bottom: 0px;
     left: 0px;
     right: 0px;
     display: flex;
+} */
+.card-footer-fixed {
+    flex: 0 0 auto;
 }
 
 .html {
@@ -84,12 +87,7 @@
     color: #28a745;
 }
 
-.img-auto {
+img {
     max-width: 100%;
-    max-height: 100%;
-}
-
-.topic-image {
-    height: 529px;
-    width: 940px;
+    height: auto;
 }

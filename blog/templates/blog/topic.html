@@ -13,17 +13,19 @@
 	</div>
 	<div class="card-body">
 		<p class="card-text">{{ e.text }}</p>
-		<div class="topic-image">
+		<div>
 			{% for i in image %}
 			<p>
-				<img src="{{ i.image.url }}" class="img-auto" alt="">
+				<img src="{{ i.image.url }}" alt="">
 				<p>
 					{{ i.text }}
 				</p>
 			</p>
 			{% endfor %}
 		</div>
-		<p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
+		<div>
+			<p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
+		</div>
 	</div>
 	<div class="card-footer card-footer-text bg-transparent border-secondary">
 		<a href="{% url 'blog:comments_entry' e.slug %}"
