@@ -4,8 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.text import slugify
 from time import time
 from django.urls import reverse
-from django_bleach.models import BleachField
-
 
 # генерируем slug: первая часть slug из модели, плюс символ "_" и
 # плюс вторая часть из модуля time, который отсчитывает время 
