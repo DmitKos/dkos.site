@@ -12,7 +12,7 @@
 		</div>
 	</div>
 	<div class="card-body">
-		<p class="card-text">{{ e.text|urlize }}</p>
+		<p class="card-text">{{ e.text|safe }}</p>
 		<div>
 			{% for i in image %}
 			<img src="{{ i.image.url }}" alt="{{ i.image_alt }}">

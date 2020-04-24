@@ -18,7 +18,7 @@
     </div>
     <div class="card-body card-body-img">
         <div class="card-body-column">
-            <p class="card-text">{{ e.text|urlize }}</p>
+            <p class="card-text">{{ e.text|safe }}</p>
             <p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
         </div>
         <div class="card-body-column">
