@@ -91,7 +91,7 @@ class Comment(models.Model):
 
 class Image(models.Model):
     """Изображения для Topic"""
-    text = models.TextField(max_length=70)
+    text = models.TextField(max_length=70, blank=True)
     image = models.ImageField(upload_to='images/', blank=True)
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT, blank=True, null=True)
     image_alt = models.CharField(max_length=30, blank=True)
