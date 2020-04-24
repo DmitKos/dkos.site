@@ -12,10 +12,10 @@
 		</div>
 	</div>
 	<div class="card-body">
-		<p class="card-text">{{ e.text }}</p>
+		<p class="card-text">{{ e.text|urlize }}</p>
 		<div>
 			{% for i in image %}
-			<img src="{{ i.image.url }}" alt="">
+			<img src="{{ i.image.url }}" alt="{{ i.image_alt }}">
 			<p class="card-text">
 				{{ i.text }}
 			</p>

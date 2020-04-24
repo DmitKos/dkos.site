@@ -38,6 +38,7 @@ class Entry(models.Model):
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT)
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='images/preview/', blank=True, null=True)
+    image_alt = models.CharField(max_length=30, blank=True)
 
     class Meta:
         verbose_name_plural = 'entries'
@@ -94,3 +95,4 @@ class Image(models.Model):
     text = models.TextField(max_length=70)
     image = models.ImageField(upload_to='images/', blank=True)
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT, blank=True, null=True)
+    image_alt = models.CharField(max_length=30, blank=True)
