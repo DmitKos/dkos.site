@@ -16,7 +16,8 @@
 }
 
 .btn-small {
-    font-size: .8rem;
+    /* font-size: .8rem; */
+    font-size: 2vh;
     margin-right: 2.5px;
     margin-left: 2.5px;
 }
@@ -28,6 +29,7 @@
 .card-date {
     text-align: right;
     flex: 1 1 auto;
+    font-size: 2vh;
 }
 
 .card-tag {
@@ -37,6 +39,11 @@
 
 .card-footer-text {
     display: inline-flex;
+    align-items: flex-start;
+}
+
+.card-footer-btn {
+    flex: 1 1 auto;
 }
 
 .card-footer-fixed {

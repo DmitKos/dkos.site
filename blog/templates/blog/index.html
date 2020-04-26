@@ -30,10 +30,12 @@
         </div>
     </div>
     <div class="card-footer card-footer-text bg-transparent border-secondary">
-        <a href="{% url 'blog:comments_entry' e.slug %}"
-            class="btn btn-outline-primary btn-small">комментарии({{ e.comment_set.count }})</a> | <a
-            href="{% url 'blog:new_comment' e.slug %}" class="btn btn-outline-primary btn-small">добавить
-            комментарий</a> | <a href="{% url 'blog:topic' e.topic.slug %}" class="btn btn-primary btn-small">читать</a>
+        <div class="card-footer-btn"><a href="{% url 'blog:comments_entry' e.slug %}"
+                class="btn btn-outline-primary btn-small">комментарии({{ e.comment_set.count }})</a> | <a
+                href="{% url 'blog:new_comment' e.slug %}" class="btn btn-outline-primary btn-small">добавить
+                комментарий</a> | <a href="{% url 'blog:topic' e.topic.slug %}"
+                class="btn btn-primary btn-small">читать</a>
+        </div>
         <div class="card-tag">
             {% if e.topic.tag.slug %}
             <a href="{% url 'blog:tag' e.topic.tag.slug %}"
