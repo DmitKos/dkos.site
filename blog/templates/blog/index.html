@@ -9,9 +9,11 @@
 {% for e in entry %}
 <div class="card bg-light mb-3">
     <div class="card-header">
-        <h1 class="display-2">
-            <a href="{% url 'blog:topic' e.topic.slug %}">{{ e.topic }}</a>
-        </h1>
+        <div class="card-topic">
+            <h1 class="display-2">
+                <a href="{% url 'blog:topic' e.topic.slug %}">{{ e.topic }}</a>
+            </h1>
+        </div>
         <div class="card-date">
             <small class="card-text text-muted">{{ e.topic.date }}</small>
         </div>
