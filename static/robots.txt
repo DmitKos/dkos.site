@@ -1,0 +1,28 @@
+User-agent: Googlebot
+Disallow: /production/*
+Disallow: /blog/migrations/*
+Disallow: /resume/migrations/*
+Disallow: /users/migrations/*
+Disallow: /comments/*
+Disallow: /new_comment/*
+Disallow: /users/*
+
+User-agent: Yandexbot
+Disallow: /production/*
+Disallow: /blog/migrations/*
+Disallow: /resume/migrations/*
+Disallow: /users/migrations/*
+Disallow: /comments/*
+Disallow: /new_comment/*
+Disallow: /users/*
+
+User-agent: *
+Disallow: /production/*
+Disallow: /blog/migrations/*
+Disallow: /resume/migrations/*
+Disallow: /users/migrations/*
+Disallow: /comments/*
+Disallow: /new_comment/*
+Disallow: /users/*
+
+Sitemap: http://dkos.site/sitemap.xml
