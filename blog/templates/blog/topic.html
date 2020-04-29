@@ -5,8 +5,10 @@
 {% block content %}
 <div class="card bg-light mb-3">
 	<div class="card-header">
-		<h1 class="display-2">{{ topic }}</h1>
-		{% for e in entry %}
+		<div class="card-topic">
+			<h1 class="display-2">{{ topic }}</h1>
+			{% for e in entry %}
+		</div>
 		<div class="card-date">
 			<small class="card-text text-muted">{{ e.topic.date }}</small>
 		</div>
@@ -15,7 +17,7 @@
 		<p class="card-text">{{ e.text|safe }}</p>
 		<div>
 			{% for i in image %}
-			<img src="{{ i.image.url }}" alt="{{ i.image_alt }}">
+			<img src="{{ i.image.url }}" class="topic-img" alt="{{ i.image_alt }}">
 			<p class="card-text">
 				{{ i.text }}
 			</p>
@@ -26,10 +28,12 @@
 		</div>
 	</div>
 	<div class="card-footer card-footer-text bg-transparent border-secondary">
-		<a href="{% url 'blog:comments_entry' e.slug %}"
-			class="btn btn-outline-primary btn-small">комментарии({{ e.comment_set.count }})</a> | <a
-			href="{% url 'blog:new_comment' e.slug %}" class="btn btn-outline-primary btn-small">добавить
-			комментарий</a>
+		<div class="card-footer-btn">
+			<a href="{% url 'blog:comments_entry' e.slug %}"
+				class="btn btn-outline-primary btn-small">комментарии({{ e.comment_set.count }})</a> | <a
+				href="{% url 'blog:new_comment' e.slug %}" class="btn btn-outline-primary btn-small">добавить
+				комментарий</a>
+		</div>
 		<div class="card-tag">
 			{% if e.topic.tag.slug %}
 			<a href="{% url 'blog:tag' e.topic.tag.slug %}"

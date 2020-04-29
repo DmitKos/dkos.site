@@ -20,15 +20,14 @@
     </div>
     <div class="card-body card-body-img">
         <div class="card-body-column">
-            <p class="card-text">{{ e.text|safe }}</p>
+            <p class="card-text">
+                {% if e.image %}
+                <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
+                {% else %}
+                {% endif %}
+                {{ e.text|safe }}
+            </p>
             <p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
-        </div>
-        <div class="card-body-column">
-            {% if e.image %}
-            <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
-            {% else %}
-            <img class="card-img-top" src="" alt="Нет изображения">
-            {% endif %}
         </div>
     </div>
     <div class="card-footer card-footer-text bg-transparent border-secondary">

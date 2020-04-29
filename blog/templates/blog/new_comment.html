@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<p class="card-text">{{ entry }}</p>
+<p class="card-text">{{ entry|safe }}</p>
 {% if user.is_authenticated %}
 <label class="font-italic text-add-comment">Добавление комментария:</label>
 <form action="{% url 'blog:new_comment' entry.slug %}" method='post'>

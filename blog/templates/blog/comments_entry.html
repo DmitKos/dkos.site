@@ -9,7 +9,12 @@
         <h1 class="display-2"><a href="{% url 'blog:topic' e_topic.slug %}">{{ e_topic }}</a></h1>
     </div>
     <div class="card-body">
-        <p class="card-text">{{ e_text|safe }}
+        <p class="card-text">
+            {% if e_comment.image %}
+            <img src="{{ e_comment.image.url }}" class="card-img-top" alt="{{ e_comment.image_alt }}">
+            {% else %}
+            {% endif %}
+            {{ e_text|safe }}
         </p>
     </div>
 </div>
