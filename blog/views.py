@@ -35,7 +35,7 @@ def topic(request, slug):
     """Вьюшка для каждой отдельной страницы (Topic)"""
     topic = get_object_or_404(Topic, slug__iexact=slug)
     entry = topic.entry_set.all
-    image = topic.image_set.all
+    image = topic.image_set.order_by('id')
     context = {'topic': topic, 'entry': entry, 'image': image}
     return render(request, 'blog/topic.html', context)
 
