@@ -73,7 +73,7 @@ body {
 
 .card-footer-fixed-text {
     text-align: justify;
-    font-size: 0.7rem;
+    font-size: 0.8vmax;
     flex: 1 1 auto;
     max-width: 50%;
 }

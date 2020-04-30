@@ -37,7 +37,7 @@ class Entry(models.Model):
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT)
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='images/preview/', blank=True, null=True)
-    image_alt = models.CharField(max_length=30, blank=True)
+    image_alt = models.CharField(max_length=40, blank=True)
 
     class Meta:
         verbose_name_plural = 'entries'
@@ -91,7 +91,7 @@ class Comment(models.Model):
 
 class Image(models.Model):
     """Изображения для Topic"""
-    text = models.TextField(max_length=70, blank=True)
+    text = models.TextField(blank=True)
     image = models.ImageField(upload_to='images/', blank=True)
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT, blank=True, null=True)
-    image_alt = models.CharField(max_length=30, blank=True)
+    image_alt = models.CharField(max_length=40, blank=True)
