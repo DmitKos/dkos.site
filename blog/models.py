@@ -21,6 +21,7 @@ class Topic(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey('Author', on_delete=models.PROTECT, null=True)
     tag = models.ForeignKey('Tag', on_delete=models.PROTECT, blank=True, null=True)
+    description = models.CharField(max_length=160, blank=True)
     slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):

@@ -1,7 +1,9 @@
 {% extends "blog/base.html" %}
 
-<!-- {% block header %}
-{% endblock header %} -->
+{% block description %}
+<meta name="description" content="{{ topic.description }}" />
+{% endblock description %}
+
 {% block content %}
 <div class="card bg-light mb-3">
 	<div class="card-header">
@@ -15,16 +17,18 @@
 	</div>
 	<div class="card-body">
 		<p class="card-text">{{ e.text|safe }}</p>
-		<div>
+		<div class="topic-text">
 			{% for i in image %}
-			<img src="{{ i.image.url }}" class="topic-img" alt="{{ i.image_alt }}">
-			<p class="card-text">
-				{{ i.text }}
-			</p>
+			<div>
+				<p class="card-text">
+					{{ i.text|safe }}
+					<img src="{{ i.image.url }}" class="topic-img" alt="{{ i.image_alt }}">
+				</p>
+			</div>
 			{% endfor %}
 		</div>
 		<div>
-			<p class="card-subtitle mb-2 text-muted">Автор: {{ e.topic.author.username }}</p>
+			<p class="card-subtitle mb-2 text-muted card-author">Автор: {{ e.topic.author.username }}</p>
 		</div>
 	</div>
 	<div class="card-footer card-footer-text bg-transparent border-secondary">

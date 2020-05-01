@@ -37,6 +37,11 @@
     max-width: 50%;
 }
 
+.card-text {
+    text-align: justify;
+    font-size: 2vmin;
+}
+
 .card-tag {
     text-align: right;
     flex: 1 1 auto;
@@ -78,6 +83,10 @@ body {
     max-width: 50%;
 }
 
+.card-author {
+    font-size: 1.9vmin;
+}
+
 .text-comment {
     font-size: 0.8rem;
     margin-left: 1.5rem;
@@ -103,12 +112,17 @@ img {
     max-width: 50%;
     height: auto;
     float: right;
-    margin: 5px 0 5px 2px;
+    margin: 5px 0 5px 10px;
 }
 
 .topic-img {
     max-width: 100%;
     height: auto;
+}
+
+.topic-text {
+    display: flex;
+    flex-direction: column;
 }
 
 .card-body-img {
