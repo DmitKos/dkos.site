@@ -62,8 +62,6 @@
 					name='search'>
 				<button class="btn btn-outline-success my-2 my-sm-0 header-font" type="submit">Поиск</button>
 			</form>
-		</div>
-		<div>
 			<ul class="nav justify-content-end">
 				{% if user.is_authenticated %}
 				<li class="nav-item header-font"><a class="nav-link active">Привет, {{ user.username }}.</a></li>
@@ -77,7 +75,7 @@
 			</ul>
 		</div>
 	</nav>
-	<br>
+	<!-- <br> -->
 	<div class="container">
 		<div>
 			{% block header %}{% endblock header %}
