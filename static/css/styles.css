@@ -21,6 +21,23 @@
     margin: 2.5px 2.5px 2.5px 2.5px;
 }
 
+.fl-navbar-l {
+    flex: 2 1 auto;
+}
+
+.fl-navbar-r {
+    flex: 0 1 auto;
+}
+
+.ft-navbar-l {
+    float: left;
+}
+
+.ft-navbar-r {
+    float: right;
+    margin-top: 5px;
+}
+
 .card-header {
     display: inline-flex;
 }
