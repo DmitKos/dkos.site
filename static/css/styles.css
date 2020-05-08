@@ -5,7 +5,7 @@
 
 .display-2 {
     margin-bottom: 0px;
-    font-size: 3vh;
+    font-size: 3vmin;
 }
 
 .display-3 {
@@ -166,4 +166,14 @@ img {
 
 .navbar {
     margin-bottom: 10px;
+}
+
+.navbar-search {
+    flex: 1 1 50%;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.navbar-btn {
+    flex: 1 1 auto;
 }

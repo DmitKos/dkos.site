@@ -9,9 +9,11 @@
 {% for tag_topic in tag_topics %}
 <div class="card bg-light mb-3">
 <div class="card-header display-2">
-	<a href="{% url 'blog:topic' tag_topic.slug %}">{{ tag_topic.title }}</a>
+	<div class="card-topic">
+		<a href="{% url 'blog:topic' tag_topic.slug %}">{{ tag_topic.title }}</a>
+	</div>
 	<div class="card-date">
-		<small class="card-text text-muted text-add-comment">{{ tag_topic.date }}</small>
+		<small class="card-text text-muted">{{ tag_topic.date }}</small>
 	</div>
 </div>
 </div>
