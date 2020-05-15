@@ -177,3 +177,7 @@ img {
 .navbar-btn {
     flex: 1 1 auto;
 }
+
+pre {
+    font-size: 2vmin;
+}
