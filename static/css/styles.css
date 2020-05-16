@@ -143,9 +143,9 @@ img {
     flex-direction: column;
 }
 
-.card-body-img {
+/* .card-body-img {
     display: inline-flex;
-}
+} */
 
 .card-img-top {
     border-bottom-right-radius: calc(.25rem - 1px);
@@ -179,5 +179,8 @@ img {
 }
 
 pre {
-    font-size: 2vmin;
+    font-size: 1.8vmin;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    height: 10vmax;
 }
