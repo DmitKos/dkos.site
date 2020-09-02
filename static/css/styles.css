@@ -1,23 +1,23 @@
 .display-1 {
     margin-bottom: 0px;
-    font-size: 4vh;
+    font-size: 16px;
 }
 
 .display-2 {
     margin-bottom: 0px;
-    font-size: 3vmin;
+    font-size: 16px;
 }
 
 .display-3 {
-    font-size: 1.3rem;
+    font-size: 14px;
 }
 
 .display-4 {
-    font-size: 1rem; 
+    font-size: 12px; 
 }
 
 .btn-small {
-    font-size: 2vh;
+    font-size: 11px;
     margin: 2.5px 2.5px 2.5px 2.5px;
 }
 
@@ -50,19 +50,19 @@
 .card-date {
     text-align: right;
     flex: 1 1 auto;
-    font-size: 2vh;
+    font-size: 12px;
     max-width: 50%;
 }
 
 .card-text {
     text-align: justify;
-    font-size: 2vmin;
+    font-size: 14px;
 }
 
 .card-tag {
     text-align: right;
     flex: 1 1 auto;
-    font-size: 2vh;
+    font-size: 10px;
 }
 
 .card-footer-text {
@@ -101,7 +101,7 @@ body {
 }
 
 .card-author {
-    font-size: 1.9vmin;
+    font-size: 12px;
 }
 
 .text-comment {
@@ -183,4 +183,14 @@ pre {
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     height: 10vmax;
+}
+
+.p {
+    text-align: justify;
+    font-size: 14px;
+}
+
+.i {
+    text-align: justify;
+    font-size: 12px;
 }
