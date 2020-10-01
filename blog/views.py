@@ -8,6 +8,8 @@ from .forms import CommentForm
 
 from django.db.models import Q
 
+from django.core.paginator import Paginator
+
 # Create your views here.
 # def index(request):
 #     """Домашняя страница приложения blog"""
@@ -20,7 +22,10 @@ def index(request):
     topics = Topic.objects.all
     entry = Entry.objects.order_by('-date')
     image = Image.objects.all
-    context = {'topics': topics, 'entry': entry, 'image': image}
+    paginator = Paginator(entry, 2)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'topics': topics, 'entry': entry, 'image': image, 'page_obj': page_obj}
     return render(request, 'blog/index.html', context)
 
 

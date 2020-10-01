@@ -22,7 +22,10 @@
 			<div>
 				<p class="card-text">
 					{{ i.text|safe }}
-					<img src="{{ i.image.url }}" class="topic-img" alt="{{ i.image_alt }}">
+					{% if i.image %}
+						<img src="{{ i.image.url }}" class="topic-img" alt="{{ i.image_alt }}">
+					{% else %}
+					{% endif %}
 				</p>
 			</div>
 			{% endfor %}

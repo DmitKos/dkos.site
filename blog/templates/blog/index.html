@@ -6,7 +6,7 @@
 
 {% block content %}
 
-{% for e in entry %}
+{% for e in page_obj %}
 <div class="card bg-light mb-3">
     <div class="card-header">
         <div class="card-topic">
@@ -21,7 +21,10 @@
     <div class="card-body card-body-img">
         <div class="card-body-column">
                 {% if e.image %}
-                <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
+                <picture>
+                    <source srcset="extralarge.jpg" media="(min-width: 1000px)">
+                    <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
+                </picture>
                 {% else %}
                 {% endif %}
             <p class="card-text">
@@ -50,5 +53,23 @@
 {% empty %}
 <p class="display-2">Записей нет.</p>
 {% endfor %}
+
+<div>
+    <span>
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo;</a>
+            <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+        {% endif %}
+
+        <span>
+            Страницы {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+        {% endif %}
+    </span>
+</div>
 
 {% endblock content %}
