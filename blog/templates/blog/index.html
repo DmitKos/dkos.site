@@ -21,10 +21,7 @@
     <div class="card-body card-body-img">
         <div class="card-body-column">
                 {% if e.image %}
-                <picture>
-                    <source srcset="extralarge.jpg" media="(min-width: 1000px)">
                     <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
-                </picture>
                 {% else %}
                 {% endif %}
             <p class="card-text">

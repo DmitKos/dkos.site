@@ -41,7 +41,8 @@ def topic(request, slug):
     topic = get_object_or_404(Topic, slug__iexact=slug)
     entry = topic.entry_set.all
     image = topic.image_set.order_by('id')
-    context = {'topic': topic, 'entry': entry, 'image': image}
+    image_s = image.values('image_s')
+    context = {'topic': topic, 'entry': entry, 'image': image, 'image_s': image_s}
     return render(request, 'blog/topic.html', context)
 
 
