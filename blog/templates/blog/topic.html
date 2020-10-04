@@ -24,7 +24,7 @@
 					{{ i.text|safe }}
 					<picture>
 					{% if i.image_s %}
-						<source srcset="{{ i.image_s.url }}" media="(max-width: 800px)">	
+						<source srcset="{{ i.image_s.url }}" media="(max-width: 1200px)">	
 						<img src="{{ i.image.url }}" class="topic-img" alt="{{ i.image_alt }}">
 					{% elif i.image %}
 						<img src="{{ i.image.url }}" class="topic-img" alt="{{ i.image_alt }}">

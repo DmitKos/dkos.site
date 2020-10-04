@@ -20,10 +20,15 @@
     </div>
     <div class="card-body card-body-img">
         <div class="card-body-column">
-                {% if e.image %}
+            <picture>
+                {% if e.image_s %}
+                    <source srcset="{{ e.image_s.url }}" media="(max-width: 1200px)">
+                    <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
+                {% elif e.image %}
                     <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
                 {% else %}
                 {% endif %}
+            </picture>
             <p class="card-text">
                 {{ e.text|safe }}
             </p>

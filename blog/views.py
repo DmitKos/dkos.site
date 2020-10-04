@@ -21,11 +21,10 @@ def index(request):
     по убыванию, от новых к старым"""
     topics = Topic.objects.all
     entry = Entry.objects.order_by('-date')
-    image = Image.objects.all
     paginator = Paginator(entry, 2)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {'topics': topics, 'entry': entry, 'image': image, 'page_obj': page_obj}
+    context = {'topics': topics, 'entry': entry, 'page_obj': page_obj}
     return render(request, 'blog/index.html', context)
 
 

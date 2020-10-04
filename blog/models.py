@@ -38,6 +38,7 @@ class Entry(models.Model):
     topic = models.ForeignKey('Topic', on_delete=models.PROTECT)
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='images/preview/', blank=True, null=True)
+    image_s = models.ImageField(upload_to='images/preview/', blank=True, null=True)
     image_alt = models.CharField(max_length=40, blank=True)
 
     class Meta:
