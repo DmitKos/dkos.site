@@ -21,6 +21,7 @@ class Topic(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey('Author', on_delete=models.PROTECT, null=True)
     tag = models.ForeignKey('Tag', on_delete=models.PROTECT, blank=True, null=True)
+    tags = models.ManyToManyField('Tags', blank=True)
     description = models.CharField(max_length=160, blank=True)
     slug = models.SlugField(max_length=100, unique=True)
 
@@ -66,11 +67,29 @@ class Tag(models.Model):
     text = models.CharField(max_length=30)
     slug = models.SlugField(max_length=100, unique=True)
 
+    class Meta:
+        verbose_name_plural = 'Old tags'
+
     def __str__(self):
         return self.text
 
     def get_absolute_url(self):
         return reverse('blog:tag', args=[self.slug])
+
+
+class Tags(models.Model):
+    """Теги темы"""
+    text = models.CharField(max_length=30)
+    slug = models.SlugField(max_length=100, unique=True)
+
+    class Meta:
+        verbose_name_plural = 'Tags'
+
+    def __str__(self):
+        return self.text
+
+    def get_absolute_url(self):
+        return reverse('blog:topic_tag_url', kwargs={'slug': self.slug})
 
 
 class Comment(models.Model):

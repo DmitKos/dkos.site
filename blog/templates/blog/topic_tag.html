@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block header %}
+<p class="display-1">Список тегов:</p>
+{% endblock header %}
+	{{ tagg.text }}
+{% block content %}
+
+<div class="list-group">
+	{% for t in tagg.topic_set.all %}
+	<p><a href="{% url 'blog:topic' t.slug %}">{{ t.title }}</a></p>
+	{% empty %}
+	<p class="alert alert-danger" role="alert">
+		Тегов ещё нет.
+	</p>
+	{% endfor %}
+</div>
+
+{% endblock content %}

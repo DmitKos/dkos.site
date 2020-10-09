@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import Topic, Entry, Tag, Comment, Image
+from .models import Topic, Entry, Tag, Comment, Image, Tags
 from .forms import CommentForm
 
 from django.db.models import Q
@@ -19,13 +19,27 @@ from django.core.paginator import Paginator
 def index(request):
     """Выводим список тем (Topic)
     по убыванию, от новых к старым"""
-    topics = Topic.objects.all
     entry = Entry.objects.order_by('-date')
-    paginator = Paginator(entry, 2)
+    paginator = Paginator(entry, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {'topics': topics, 'entry': entry, 'page_obj': page_obj}
+    # topic_tags = Topic.objects.all().values('id')
+    # t = {}
+    # for t_e in topic_tags:
+    #     t[t_e['id']] = Tags.objects.filter(topic__id=t_e['id'])
+    # tt = t.values()
+    context = {'entry': entry, 'page_obj': page_obj}
     return render(request, 'blog/index.html', context)
+
+
+def topic_tags_list(request):
+    l_tags = Tags.objects.all()
+    return render(request, 'blog/topic_tags_list.html', context={'l_tags': l_tags})
+
+
+def topic_tag(request, slug):
+    tagg = Tags.objects.get(slug__iexact=slug)
+    return render(request, 'blog/topic_tag.html', context={'tagg': tagg})
 
 
 def topics(request):

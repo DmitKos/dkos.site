@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Topic, Entry, Author, Tag, Comment, Image
+from blog.models import Topic, Entry, Author, Tag, Comment, Image, Tags
 
 # Register your models here.
 class TopicInline(admin.TabularInline):
@@ -54,3 +54,12 @@ class ImageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Image, ImageAdmin)
+
+
+class TagsAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Tags._meta.fields]
+
+    class Meta:
+        model = Tags
+
+admin.site.register(Tags, TagsAdmin)

@@ -53,6 +53,12 @@
 			{% else %}
 			<span class="badge badge-pill badge-light">None</span>
 			{% endif %}
+
+			{% for tag in e.topic.tags.all %}
+            <a href="{{ tag.get_absolute_url }}"
+            class="badge badge-pill badge-success">{{ tag.text }}</a>
+            {% endfor %}
+
 		</div>
 
 	</div>

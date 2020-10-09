@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block header %}
+<p class="display-1">Список тегов:</p>
+{% endblock header %}
+
+{% block content %}
+
+<div class="list-group">
+	{% for t in l_tags %}
+	<p><a href="{{ t.get_absolute_url }}">{{ t.text }}</a></p>
+	{% empty %}
+	<p class="alert alert-danger" role="alert">
+		Тегов ещё нет.
+	</p>
+	{% endfor %}
+</div>
+
+{% endblock content %}

@@ -33,4 +33,6 @@ urlpatterns = [
     # поиск на сайте
     path('search/', views.site_search, name='site_search'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('topic_tags_list/', views.topic_tags_list, name='topic_tags_list_url'),
+    path('topic_tag/<str:slug>/', views.topic_tag, name='topic_tag_url'),
 ]
