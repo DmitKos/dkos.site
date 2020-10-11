@@ -7,8 +7,9 @@
 {% block content %}
 
 <div class="list-group">
-	{% for t in l_tags %}
-	<p><a href="{{ t.get_absolute_url }}">{{ t.text }}</a></p>
+	{% for topic_tag in topic_tags %}
+	<p><a href="{{ topic_tag.get_absolute_url }}"
+			class="list-group-item list-group-item-action btn-outline-success">{{ topic_tag.text }}</a></p>
 	{% empty %}
 	<p class="alert alert-danger" role="alert">
 		Тегов ещё нет.

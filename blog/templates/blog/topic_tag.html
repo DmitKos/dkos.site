@@ -1,19 +1,27 @@
 {% extends "blog/base.html" %}
 
 {% block header %}
-<p class="display-1">Список тегов:</p>
+<p class="display-1">Список тегов: <small class="text-muted">{{ topic_tag.text }}</small></p>
 {% endblock header %}
-	{{ tagg.text }}
+
 {% block content %}
 
-<div class="list-group">
-	{% for t in tagg.topic_set.all %}
-	<p><a href="{% url 'blog:topic' t.slug %}">{{ t.title }}</a></p>
-	{% empty %}
-	<p class="alert alert-danger" role="alert">
-		Тегов ещё нет.
-	</p>
-	{% endfor %}
+{% for tag in topic_tag.topic_set.all %}
+<div class="card bg-light mb-3">
+<div class="card-header display-2">
+	<div class="card-topic">
+		<a href="{% url 'blog:topic' tag.slug %}">{{ tag.title }}</a>
+	</div>
+	<div class="card-date">
+		<small class="card-text text-muted">{{ tag.date }}</small>
+	</div>
 </div>
+</div>
+
+{% empty %}
+	<li>
+		There are no topic for this tag yet.
+	</li>
+{% endfor %}
 
 {% endblock content %}

@@ -11,64 +11,57 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 # Create your views here.
-# def index(request):
-#     """Домашняя страница приложения blog"""
-#     return render(request, 'blog/index.html')
 
 
 def index(request):
-    """Выводим список тем (Topic)
-    по убыванию, от новых к старым"""
+    """Show a list of Topic from new to old"""
     entry = Entry.objects.order_by('-date')
     paginator = Paginator(entry, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    # topic_tags = Topic.objects.all().values('id')
-    # t = {}
-    # for t_e in topic_tags:
-    #     t[t_e['id']] = Tags.objects.filter(topic__id=t_e['id'])
-    # tt = t.values()
     context = {'entry': entry, 'page_obj': page_obj}
     return render(request, 'blog/index.html', context)
 
 
 def topic_tags_list(request):
-    l_tags = Tags.objects.all()
-    return render(request, 'blog/topic_tags_list.html', context={'l_tags': l_tags})
+    """Views for all Tag"""
+    topic_tags = Tags.objects.all()
+    return render(request, 'blog/topic_tags_list.html', context={'topic_tags': topic_tags})
 
 
 def topic_tag(request, slug):
-    tagg = Tags.objects.get(slug__iexact=slug)
-    return render(request, 'blog/topic_tag.html', context={'tagg': tagg})
+    """Views for each page Tag associated with a Topic"""
+    topic_tag = get_object_or_404(Tags, slug__iexact=slug)
+    return render(request, 'blog/topic_tag.html', context={'topic_tag': topic_tag})
 
 
 def topics(request):
-    """Выводим список тем (Topic)"""
+    """Show all Topic"""
     topics = Topic.objects.order_by('title')
     context = {'topics': topics}
     return render(request, 'blog/topics.html', context)
 
 
 def topic(request, slug):
-    """Вьюшка для каждой отдельной страницы (Topic)"""
+    """Views for each page of Topic"""
     topic = get_object_or_404(Topic, slug__iexact=slug)
     entry = topic.entry_set.all
     image = topic.image_set.order_by('id')
     image_s = image.values('image_s')
-    context = {'topic': topic, 'entry': entry, 'image': image, 'image_s': image_s}
+    context = {'topic': topic, 'entry': entry,
+               'image': image, 'image_s': image_s}
     return render(request, 'blog/topic.html', context)
 
 
 def tags(request):
-    """Вьюшка для страницы со всеми тегами"""
+    """Views for all Tag (not used)"""
     tags = Tag.objects.order_by('text')
     context = {'tags': tags}
     return render(request, 'blog/tags.html', context)
 
 
 def tag(request, slug):
-    """Отдельное представление для каждого тега, каждый тег, в свою очередь,
-    связан с определёнными темами (Topic)"""
+    """Views for each page Tag associated with a Topic (not used)"""
     tag = get_object_or_404(Tag, slug__iexact=slug)
     tag_topics = tag.topic_set.order_by('title')
     context = {'tag': tag, 'tag_topics': tag_topics}
@@ -76,24 +69,25 @@ def tag(request, slug):
 
 
 def comments(request):
-    """Представление для страницы со всеми комментариями"""
+    """Views all Comment"""
     comments = Comment.objects.order_by('-date')
     context = {'comments': comments}
     return render(request, 'blog/comments.html', context)
 
 
 def comments_entry(request, slug):
-    """Комментарии принадлежащие определённой записи (Entry)"""
+    """Comments associated with Entry"""
     e_comment = get_object_or_404(Entry, slug__iexact=slug)
     comments = e_comment.comment_set.order_by('-date')
     e_text = e_comment.text
     e_topic = e_comment.topic
-    context = {'comments': comments, 'e_text': e_text, 'e_topic': e_topic, 'e_comment': e_comment}
+    context = {'comments': comments, 'e_text': e_text,
+               'e_topic': e_topic, 'e_comment': e_comment}
     return render(request, 'blog/comments_entry.html', context)
 
 
 def new_comment(request, slug):
-    """Представление для страницы для добавления нового комментария"""
+    """Add a new comment"""
     entry = get_object_or_404(Entry, slug__iexact=slug)
     topic = entry.topic
     if request.method != 'POST':
@@ -112,6 +106,7 @@ def new_comment(request, slug):
 
 
 def site_search(request):
+    """Site search"""
     topics = Topic.objects.order_by('-date')
     entries = Entry.objects.order_by('-date')
     search_query = request.GET.get('search', '')

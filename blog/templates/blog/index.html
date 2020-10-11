@@ -22,10 +22,10 @@
         <div class="card-body-column">
             <picture>
                 {% if e.image_s %}
-                    <source srcset="{{ e.image_s.url }}" media="(max-width: 1200px)">
-                    <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
+                <source srcset="{{ e.image_s.url }}" media="(max-width: 1200px)">
+                <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
                 {% elif e.image %}
-                    <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
+                <img class="card-img-top" src="{{ e.image.url }}" alt="{{ e.image_alt }}">
                 {% else %}
                 {% endif %}
             </picture>
@@ -42,42 +42,26 @@
                 комментарий</a> | <a href="{% url 'blog:topic' e.topic.slug %}"
                 class="btn btn-primary btn-small">читать</a>
         </div>
-        <div class="card-tag">
-            {% if e.topic.tag.slug %}
-            <a href="{% url 'blog:tag' e.topic.tag.slug %}"
-                class="badge badge-pill badge-success">{{ e.topic.tag.text }}</a>
-            {% else %}
-            <span class="badge badge-pill badge-light">None</span>
-            {% endif %}
-
-            {% for tag in e.topic.tags.all %}
-            <a href="{{ tag.get_absolute_url }}"
-            class="badge badge-pill badge-success">{{ tag.text }}</a>
-            {% endfor %}
-            
-        </div>
+        {% include "./tags_include.html" %}
     </div>
 </div>
 {% empty %}
 <p class="display-2">Записей нет.</p>
 {% endfor %}
-
-<div>
-    <span>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
         {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo;</a>
-            <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
+        <li class="page-item"><a class="page-link"
+                href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
         {% endif %}
-
-        <span>
-            Страницы {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
-        </span>
-
+        <li class="page-item active"><a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+        </li>
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+        <li class="page-item"><a class="page-link"
+                href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+        <li><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a></li>
         {% endif %}
-    </span>
-</div>
-
+    </ul>
+</nav>
 {% endblock content %}
