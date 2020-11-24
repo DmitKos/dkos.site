@@ -78,7 +78,7 @@ def comments(request):
 def comments_entry(request, slug):
     """Comments associated with Entry"""
     e_comment = get_object_or_404(Entry, slug__iexact=slug)
-    comments = e_comment.comment_set.order_by('-date')
+    comments = e_comment.comment_set.order_by('date')
     e_text = e_comment.text
     e_topic = e_comment.topic
     context = {'comments': comments, 'e_text': e_text,
