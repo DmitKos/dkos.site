@@ -70,7 +70,7 @@ def tag(request, slug):
 
 def comments(request):
     """Views all Comment"""
-    comments = Comment.objects.order_by('-date')
+    comments = Comment.objects.order_by('date')
     context = {'comments': comments}
     return render(request, 'blog/comments.html', context)
 

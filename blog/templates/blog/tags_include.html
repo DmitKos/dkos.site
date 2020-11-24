@@ -3,7 +3,6 @@
     <a href="{% url 'blog:tag' e.topic.tag.slug %}"
         class="badge badge-pill badge-success">{{ e.topic.tag.text }}</a>
     {% else %}
-        <span class="badge badge-pill badge-light">None</span>
     {% endif %}
     {% for tag in e.topic.tags.all %}
         <a href="{{ tag.get_absolute_url }}"
